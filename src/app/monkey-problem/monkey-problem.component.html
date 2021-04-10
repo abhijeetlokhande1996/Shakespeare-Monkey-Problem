@@ -1,0 +1,103 @@
+<div class="row">
+  <div class="col-6 mx-auto">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Shakespeare Monkey Problem</h5>
+        <p class="card-text text-justify">
+          If a monkey starts hitting keys at random on a keyboard for an
+          infinite amount of time, he will almost surely type a given text, such
+          as the complete works of William Shakespeare. In fact, the monkey
+          would almost surely type every possible finite text an infinite number
+          of times. However, the probability of this event is so tiny that it
+          will require more time than the estimated age of the universe, but
+          chances of occurrence of this event is not zero.
+        </p>
+        <hr />
+        <p class="card-text text-justify font-italic">Proof:</p>
+        <p class="card-text text-justify">
+          Suppose the typewriter has 50 keys, and the word to be typed is
+          "banana". If the keys are pressed randomly and independently, it means
+          that each key has an equal chance of being pressed. Then, the chance
+          that the first letter typed is "b" is 1/50, and the chance that the
+          second letter typed is "a" is also 1/50, and so on. Therefore, the
+          chance of the first six letters spelling “banana” is: (1&frasl;50) ×
+          (1&frasl;50) × (1&frasl;50) × (1&frasl;50) × (1&frasl;50) ×
+          (1&frasl;50) = (1&frasl;50)<sup>6</sup> = 1&frasl;15625000000, i.e.,
+          less than one in 15 billion. But still not zero, hence an outcome is
+          still possible.
+        </p>
+        <p class="card-text text-justify">
+          So, the monkey will type the word "banana" 1 out of 15,625,000,000
+          times. Now let us suppose the monkey hits a key per second the amount
+          of time being taken for this event to occur in the worst case is 495
+          years approx.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-6 mx-auto">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Parameters</h5>
+            <form>
+              <div class="form-group">
+                <label>Phrase</label>
+                <input
+                  class="form-control"
+                  name="phrase"
+                  [(ngModel)]="phrase"
+                />
+              </div>
+              <div class="form-group">
+                <label>Population Count</label>
+                <input
+                  class="form-control"
+                  name="populationCount"
+                  [(ngModel)]="populationCount"
+                />
+              </div>
+              <div class="form-group">
+                <label>Mutation Rate [0 to 1]</label>
+                <input
+                  class="form-control"
+                  name="mutationRate"
+                  [(ngModel)]="mutationRate"
+                />
+              </div>
+              <button class="btn btn-outline-primary" (click)="onGo()">
+                Go
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-1" style="height: 400px; overflow: scroll">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Output</h5>
+            <div *ngIf="opFoundFlag">
+              <h6 class="text-primary">Answer found in Generation {{ gc }}</h6>
+              <h6 class="text-primary">
+                Time taken to execute: {{ timeTaken / 1000 }} second
+              </h6>
+              <table class="table">
+                <tr>
+                  <th>Generation</th>
+                  <th>Most Similar Phrase</th>
+                </tr>
+                <tr *ngFor="let p of similarPhrases; let i = index">
+                  <td>Generation {{ i + 1 }}</td>
+                  <td>{{ p }}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
